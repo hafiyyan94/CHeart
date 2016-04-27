@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">CHeart</string>
+    <string name="action_search">Search</string>
+
+    <string name="title_settings">SETTINGS</string>
+
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <!-- navigation drawer item labels  -->
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_settings</item>
+    </string-array>
+
+    <string name="nav_settings">Settings</string>
+</resources>
