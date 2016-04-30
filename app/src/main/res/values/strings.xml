@@ -2,7 +2,7 @@
     <string name="app_name">CHeart</string>
     <string name="action_search">Search</string>
 
-    <string name="title_settings">SETTINGS</string>
+    <string name="title_settings">Settings</string>
 
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
