@@ -8,6 +8,7 @@ package com.example.cheart.cheart.app;
 import com.example.cheart.cheart.util.LruBitmapCache;
 import android.app.Application;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -46,6 +47,7 @@ public class VolleyAppController extends Application {
             mImageLoader = new ImageLoader(this.mRequestQueue,
                     new LruBitmapCache());
         }
+        Log.d("Process","Image");
         return this.mImageLoader;
     }
 

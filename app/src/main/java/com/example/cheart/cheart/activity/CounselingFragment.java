@@ -12,14 +12,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.cheart.cheart.R;
+import com.example.cheart.cheart.adapter.CounselorListAdapter;
 import com.example.cheart.cheart.app.VolleyAppController;
 import com.example.cheart.cheart.adapter.MovieListAdapter;
+import com.example.cheart.cheart.model.Counselor;
 import com.example.cheart.cheart.model.Movie;
 
 import org.json.JSONArray;
@@ -36,11 +39,11 @@ import java.util.List;
 public class CounselingFragment extends Fragment {
 
     private static final String TAG = CounselingFragment.class.getSimpleName();
-    private static final String url = "http://api.androidhive.info/json/movies.json";
+    private static final String url = "http://wsn.hol.es/counselor.json";
     private ProgressDialog pDialog;
-    private List<Movie> movieList = new ArrayList<Movie>();
+    private List<Counselor> cList = new ArrayList<Counselor>();
     private ListView listView;
-    private MovieListAdapter adapter;
+    private CounselorListAdapter adapter;
 
 
     public CounselingFragment(){
@@ -58,7 +61,7 @@ public class CounselingFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.counseling_fragment, container, false);
         listView = (ListView) rootView.findViewById(R.id.list);
-        adapter = new MovieListAdapter(getActivity(), movieList);
+        adapter = new CounselorListAdapter(getActivity(), cList);
         listView.setAdapter(adapter);
 
         pDialog = new ProgressDialog(this.getContext());
@@ -66,8 +69,7 @@ public class CounselingFragment extends Fragment {
         pDialog.setMessage("Loading...");
         pDialog.show();
 
-        // Creating volley request obj
-        JsonArrayRequest movieReq = new JsonArrayRequest(url,
+        JsonArrayRequest cReq = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -79,23 +81,13 @@ public class CounselingFragment extends Fragment {
                             try {
 
                                 JSONObject obj = response.getJSONObject(i);
-                                Movie movie = new Movie();
-                                movie.setTitle(obj.getString("title"));
-                                movie.setThumbnailUrl(obj.getString("image"));
-                                movie.setRating(((Number) obj.get("rating"))
-                                        .doubleValue());
-                                movie.setYear(obj.getInt("releaseYear"));
+                                Counselor c = new Counselor();
+                                c.setName(obj.getString("Nama"));
+                                c.setDescription(obj.getString("Description"));
+                                c.setIdCounselor(Integer.parseInt(obj.getString("Id")));
+                                c.setThumbnailUrl(obj.getString("Image"));
 
-                                // Genre is json array
-                                JSONArray genreArry = obj.getJSONArray("genre");
-                                ArrayList<String> genre = new ArrayList<String>();
-                                for (int j = 0; j < genreArry.length(); j++) {
-                                    genre.add((String) genreArry.get(j));
-                                }
-                                movie.setGenre(genre);
-
-                                // adding movie to movies array
-                                movieList.add(movie);
+                                cList.add(c);
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -114,9 +106,8 @@ public class CounselingFragment extends Fragment {
 
             }
         });
-
         // Adding request to request queue
-        VolleyAppController.getInstance().addToRequestQueue(movieReq);
+        VolleyAppController.getInstance().addToRequestQueue(cReq);
 
         return rootView;
     }
