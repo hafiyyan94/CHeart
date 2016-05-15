@@ -7,10 +7,12 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.example.cheart.cheart.MainActivity;
 import com.example.cheart.cheart.R;
 import com.example.cheart.cheart.adapter.CounselorListAdapter;
 import com.example.cheart.cheart.app.VolleyAppController;
@@ -53,16 +56,31 @@ public class CounselingFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        ((MainActivity) getActivity())
+                .setActionBarTitle("List Counselor");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.counseling_fragment, container, false);
+
         listView = (ListView) rootView.findViewById(R.id.list);
         adapter = new CounselorListAdapter(getActivity(), cList);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Counselor profCoun = cList.get(position);
+                Bundle bunProfile = new Bundle();
+                bunProfile.putSerializable("counselor",profCoun);
+                Fragment profileFragment = new CounselorProfileFragment();
+                profileFragment.setArguments(bunProfile);
+                FragmentManager fm = getFragmentManager();
+                fm.beginTransaction().replace(R.id.container_body,profileFragment).addToBackStack(null).commit();
+
+            }
+        });
 
         pDialog = new ProgressDialog(this.getContext());
         // Showing progress dialog before making http request

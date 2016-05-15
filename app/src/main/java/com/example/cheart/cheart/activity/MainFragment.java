@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.cheart.cheart.MainActivity;
 import com.example.cheart.cheart.R;
 
 /**
@@ -25,7 +26,8 @@ public class MainFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        ((MainActivity) getActivity())
+                .setActionBarTitle("CHeart");
     }
 
     @Override
