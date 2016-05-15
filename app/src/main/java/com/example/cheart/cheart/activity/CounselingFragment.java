@@ -24,9 +24,7 @@ import com.example.cheart.cheart.MainActivity;
 import com.example.cheart.cheart.R;
 import com.example.cheart.cheart.adapter.CounselorListAdapter;
 import com.example.cheart.cheart.app.VolleyAppController;
-import com.example.cheart.cheart.adapter.MovieListAdapter;
 import com.example.cheart.cheart.model.Counselor;
-import com.example.cheart.cheart.model.Movie;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,30 +56,7 @@ public class CounselingFragment extends Fragment {
         super.onCreate(savedInstanceState);
         ((MainActivity) getActivity())
                 .setActionBarTitle("List Counselor");
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.counseling_fragment, container, false);
-
-        listView = (ListView) rootView.findViewById(R.id.list);
         adapter = new CounselorListAdapter(getActivity(), cList);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Counselor profCoun = cList.get(position);
-                Bundle bunProfile = new Bundle();
-                bunProfile.putSerializable("counselor",profCoun);
-                Fragment profileFragment = new CounselorProfileFragment();
-                profileFragment.setArguments(bunProfile);
-                FragmentManager fm = getFragmentManager();
-                fm.beginTransaction().replace(R.id.container_body,profileFragment).addToBackStack(null).commit();
-
-            }
-        });
-
         pDialog = new ProgressDialog(this.getContext());
         // Showing progress dialog before making http request
         pDialog.setMessage("Loading...");
@@ -127,6 +102,30 @@ public class CounselingFragment extends Fragment {
         // Adding request to request queue
         VolleyAppController.getInstance().addToRequestQueue(cReq);
 
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        final View rootView = inflater.inflate(R.layout.counseling_fragment, container, false);
+
+        listView = (ListView) rootView.findViewById(R.id.list);
+
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Counselor profCoun = cList.get(position);
+                Bundle bunProfile = new Bundle();
+                bunProfile.putSerializable("counselor", profCoun);
+                Fragment profileFragment = new CounselorProfileFragment();
+                profileFragment.setArguments(bunProfile);
+                FragmentManager fm = getFragmentManager();
+                fm.beginTransaction().replace(R.id.container_body, profileFragment).addToBackStack(null).commit();
+
+            }
+        });
+
         return rootView;
     }
 
@@ -141,6 +140,11 @@ public class CounselingFragment extends Fragment {
             pDialog.dismiss();
             pDialog = null;
         }
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
     }
 
     public boolean isOnline() {

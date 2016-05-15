@@ -54,11 +54,16 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(getActivity().getApplicationContext(), "Chat Coy", Toast.LENGTH_SHORT);
-                Log.d("hello2","Chat");
+                Log.d("hello2", "Chat");
             }
         });
 
         return rootView;
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
     }
 
     @Override
