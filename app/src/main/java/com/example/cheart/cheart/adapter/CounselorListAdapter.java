@@ -14,7 +14,6 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.example.cheart.cheart.R;
 import com.example.cheart.cheart.app.VolleyAppController;
 import com.example.cheart.cheart.model.Counselor;
-import com.example.cheart.cheart.model.Movie;
 
 import java.util.List;
 
@@ -68,6 +67,7 @@ public class CounselorListAdapter extends BaseAdapter {
 
         // thumbnail image
         thumbNail.setImageUrl(c.getThumbnailUrl(), imageLoader);
+
         Log.d("Masuk","Hehe");
 
         // title
