@@ -3,9 +3,11 @@ package com.example.cheart.cheart.activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
@@ -45,11 +47,25 @@ public class CounselorProfileFragment extends Fragment {
 
         Bundle bun = getArguments();
 
-        Counselor coun = (Counselor) bun.getSerializable("counselor");
+        final Counselor coun = (Counselor) bun.getSerializable("counselor");
 
         NetworkImageView thumbNail = (NetworkImageView) rootView.findViewById(R.id.thumbnail);
         TextView name = (TextView) rootView.findViewById(R.id.name);
         TextView desc = (TextView) rootView.findViewById(R.id.desc);
+        Button daftarBut = (Button) rootView.findViewById(R.id.daftar);
+
+        daftarBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bunProfile = new Bundle();
+                bunProfile.putSerializable("counselor", coun);
+                Fragment profileFragment = new RegisterFragment();
+                profileFragment.setArguments(bunProfile);
+                FragmentManager fm = getFragmentManager();
+                fm.beginTransaction().replace(R.id.container_body, profileFragment).addToBackStack(null).commit();
+
+            }
+        });
 
         if (coun != null) {
             thumbNail.setImageUrl(coun.getThumbnailUrl(), imageLoader);
@@ -67,4 +83,6 @@ public class CounselorProfileFragment extends Fragment {
             pDialog = null;
         }
     }
+
+
 }
