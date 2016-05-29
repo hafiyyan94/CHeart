@@ -34,7 +34,7 @@ public class RegisterFragment extends Fragment {
     private EditText problem;
     private Button regBut;
     private Button cancBut;
-    private final String registerURL = "http://cheart.web.id/web/coba.php";
+    private final String registerURL = "http://cheart.web.id/androidservice/coba.php";
     private final String keyIdCounselor = "id_counselor";
     private final String keyIdClient = "id_client";
     private final String id_client = "1";

@@ -40,7 +40,7 @@ import java.util.List;
 public class CounselingFragment extends Fragment {
 
     private static final String TAG = CounselingFragment.class.getSimpleName();
-    private static final String url = "http://cheart.web.id/web/counselor.json";
+    private static final String url = "http://cheart.web.id/androidservice/counselor.json";
     private ProgressDialog pDialog;
     private List<Counselor> cList = new ArrayList<Counselor>();
     private ListView listView;
