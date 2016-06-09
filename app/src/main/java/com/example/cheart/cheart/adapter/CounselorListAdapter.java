@@ -74,7 +74,7 @@ public class CounselorListAdapter extends BaseAdapter {
         name.setText(c.getName());
 
         // rating
-        desc.setText(c.getDescription());
+        desc.setText(c.getProfession());
 
         // release year
         id.setText(Integer.toString(c.getIdCounselor()));

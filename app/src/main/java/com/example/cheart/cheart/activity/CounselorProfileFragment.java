@@ -51,7 +51,7 @@ public class CounselorProfileFragment extends Fragment {
 
         NetworkImageView thumbNail = (NetworkImageView) rootView.findViewById(R.id.thumbnail);
         TextView name = (TextView) rootView.findViewById(R.id.name);
-        TextView desc = (TextView) rootView.findViewById(R.id.desc);
+        TextView profession = (TextView) rootView.findViewById(R.id.desc);
         Button daftarBut = (Button) rootView.findViewById(R.id.daftar);
 
         daftarBut.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +70,7 @@ public class CounselorProfileFragment extends Fragment {
         if (coun != null) {
             thumbNail.setImageUrl(coun.getThumbnailUrl(), imageLoader);
             name.setText(coun.getName());
-            desc.setText(coun.getDescription());
+            profession.setText(coun.getProfession());
         }
 
         hidePDialog();

@@ -4,24 +4,56 @@ import android.os.Parcelable;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Administrator on 5/7/2016.
  */
 public class Counselor implements Serializable {
-    private String name, thumbnailUrl, description, thumbnailInsideUrl;
+    private String name, thumbnailUrl, profession, thumbnailInsideUrl, bdate;
     private int idCounselor;
+    private double longitude,latitude;
+
+
+    public Counselor(int idCounselor, String name, String profession, String bdate, String thumbnailUrl, double longitude, double latitude) {
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.bdate = bdate;
+        this.idCounselor = idCounselor;
+        this.profession = profession;
+        this.thumbnailUrl = thumbnailUrl;
+        this.name = name;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getBdate() {
+        return bdate;
+    }
+
+    public void setBdate(String bdate) {
+        this.bdate = bdate;
+    }
+
+
 
     public Counselor() {
     }
 
-    public Counselor(String name, String thumbnailUrl, String description, String thumbnailInsideUrl, int idCounselor) {
-        this.name = name;
-        this.thumbnailUrl = thumbnailUrl;
-        this.description = description;
-        this.thumbnailInsideUrl = thumbnailInsideUrl;
-        this.idCounselor = idCounselor;
-    }
 
     public String getName() {
         return name;
@@ -39,12 +71,12 @@ public class Counselor implements Serializable {
         this.thumbnailUrl = thumbnailUrl;
     }
 
-    public String getDescription() {
-        return description;
+    public String getProfession() {
+        return profession;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setProfession(String profession) {
+        this.profession = profession;
     }
 
     public String getThumbnailInsideUrl() {
