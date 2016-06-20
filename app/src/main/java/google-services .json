@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "953721216893",
+    "project_id": "stellar-button-128421"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953721216893:android:a19ca412723c51d2",
+        "android_client_info": {
+          "package_name": "com.example.davidgamaliel.gcmappchat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXDIx8vZnCZgkVB63GMfRa6W15NozEdug"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

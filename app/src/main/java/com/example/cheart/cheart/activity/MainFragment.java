@@ -1,6 +1,7 @@
 package com.example.cheart.cheart.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -54,6 +55,8 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(getActivity().getApplicationContext(), "Chat Coy", Toast.LENGTH_SHORT);
+                Intent it = new Intent(getActivity(), com.example.cheart.cheart.activity.MainActivityChat.class);
+                startActivity(it);
                 Log.d("hello2", "Chat");
             }
         });

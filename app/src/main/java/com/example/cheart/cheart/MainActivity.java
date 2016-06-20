@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.example.cheart.cheart.activity.FragmentDrawer;
 import com.example.cheart.cheart.activity.MainFragment;
 import com.example.cheart.cheart.activity.SettingsActivity;
+import com.example.cheart.cheart.app.MyApplication;
+import com.example.cheart.cheart.model.User;
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener{
 
@@ -46,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.container_body, new MainFragment());
         fragmentTransaction.commit();
+
+        User user = new User("1","david","david@david.com");
+        MyApplication.getInstance().getPrefManager().storeUser(user);
     }
 
 
